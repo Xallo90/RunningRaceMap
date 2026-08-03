@@ -2,10 +2,10 @@
 
 const COLORS = { trail: "#2e7d32", road: "#1565c0", both: "#6a1b9a", unknown: "#757575" };
 
-const map = L.map("map", { zoomControl: true }).setView([64.5, 13.5], 5);
+const map = L.map("map", { zoomControl: true }).setView([63.0, 15.0], 5);
 L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
   maxZoom: 18,
-  attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> · Løpsdata: <a href="https://terminlista.kondis.no">Kondis</a>',
+  attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> · Løpsdata: <a href="https://terminlista.kondis.no">Kondis</a> + <a href="https://lopplistan.se">Lopplistan</a>',
 }).addTo(map);
 
 const cluster = L.markerClusterGroup({
@@ -19,6 +19,7 @@ let userPos = null;       // L.LatLng
 let userMarker = null;
 
 const state = {
+  country: "all",
   surface: "all",
   distMin: 0,
   distMax: 999,
@@ -66,7 +67,7 @@ function popupHtml(p) {
   return `
     <h3>${p.name}</h3>
     <div>📅 ${fmtDate(p.date)}</div>
-    <div>📍 ${p.town}${p.area ? ", " + p.area : ""}</div>
+    <div>📍 ${p.country === "SE" ? "🇸🇪" : "🇳🇴"} ${p.town}${p.area ? ", " + p.area : ""}</div>
     ${p.distanceSummary ? `<div>📏 ${p.distanceSummary}</div>` : ""}
     <div class="tags"><span class="tag" style="background:${col}">${surfaceLabel(p.categories)}</span></div>
     ${p.description ? `<div style="color:#555">${p.description.slice(0, 160)}${p.description.length > 160 ? "…" : ""}</div>` : ""}
@@ -77,6 +78,7 @@ function popupHtml(p) {
 /* ---------- filtering ---------- */
 
 function matches(p) {
+  if (state.country !== "all" && p.country !== state.country) return false;
   if (state.surface !== "all" && !p.categories.includes(state.surface)) return false;
 
   const fullRange = state.distMin <= 0 && state.distMax >= 999;
@@ -120,7 +122,7 @@ function applyFilters() {
         <span>${p.name}</span>
         ${r.away != null ? `<span class="away">${r.away < 10 ? r.away.toFixed(1) : Math.round(r.away)} km</span>` : ""}
       </div>
-      <div class="meta">${fmtDate(p.date)} · ${p.town}${p.distanceSummary ? " · " + p.distanceSummary : ""}</div>
+      <div class="meta">${p.country === "SE" ? "🇸🇪" : "🇳🇴"} ${fmtDate(p.date)} · ${p.town}${p.distanceSummary ? " · " + p.distanceSummary : ""}</div>
     `;
     el.addEventListener("click", () => {
       cluster.zoomToShowLayer(r.marker, () => r.marker.openPopup());
@@ -131,14 +133,18 @@ function applyFilters() {
 
 /* ---------- UI wiring ---------- */
 
-document.querySelectorAll("#surfaceSeg button").forEach(b => {
-  b.addEventListener("click", () => {
-    document.querySelectorAll("#surfaceSeg button").forEach(x => x.classList.remove("active"));
-    b.classList.add("active");
-    state.surface = b.dataset.val;
-    applyFilters();
+function wireSeg(segId, stateKey) {
+  document.querySelectorAll(`#${segId} button`).forEach(b => {
+    b.addEventListener("click", () => {
+      document.querySelectorAll(`#${segId} button`).forEach(x => x.classList.remove("active"));
+      b.classList.add("active");
+      state[stateKey] = b.dataset.val;
+      applyFilters();
+    });
   });
-});
+}
+wireSeg("surfaceSeg", "surface");
+wireSeg("countrySeg", "country");
 
 document.querySelectorAll("#distChips button").forEach(b => {
   b.addEventListener("click", () => {
@@ -199,9 +205,16 @@ async function searchPlace() {
     const rank = { Kommune: 3, By: 2, Tettsted: 1 };
     const hits = (data.navn || []).filter(h => h.representasjonspunkt)
       .sort((a, b) => (rank[b.navneobjekttype] || 0) - (rank[a.navneobjekttype] || 0));
-    if (!hits.length) { alert("Fant ikke stedet."); return; }
-    const pt = hits[0].representasjonspunkt;
-    setUserPos(L.latLng(pt.nord, pt.øst), hits[0].skrivemåte);
+    if (hits.length) {
+      const pt = hits[0].representasjonspunkt;
+      setUserPos(L.latLng(pt.nord, pt.øst), hits[0].skrivemåte);
+      return;
+    }
+    // not found in Norway – try Sweden via Nominatim
+    const seRes = await fetch(`https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(q)}&countrycodes=se&format=jsonv2&limit=1`);
+    const seData = await seRes.json();
+    if (!seData.length) { alert("Fant ikke stedet."); return; }
+    setUserPos(L.latLng(+seData[0].lat, +seData[0].lon), seData[0].name);
   } catch (e) {
     alert("Stedssøk feilet: " + e.message);
   }

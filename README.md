@@ -1,16 +1,19 @@
-# 🏃 Løpskart – Running Race Map for Norway
+# 🏃 Løpskart – Running Race Map for Norway & Sweden
 
-An interactive map of running races in Norway. Browse ~800 upcoming races on a
-Google Maps-style interface, filter by surface (trail/road), distance and date,
-and sort by how far they are from you.
+An interactive map of running races in Norway and Sweden. Browse upcoming races
+on a Google Maps-style interface, filter by country, surface (trail/road),
+distance and date, and sort by how far they are from you.
 
-**Data:** [Kondis terminlista](https://terminlista.kondis.no) (public Firestore API) ·
-**Geocoding:** [Kartverket / GeoNorge](https://ws.geonorge.no) ·
+**Data:** 🇳🇴 [Kondis terminlista](https://terminlista.kondis.no) (public Firestore API) ·
+🇸🇪 [Lopplistan](https://lopplistan.se) (HTML, robots.txt allows crawling) ·
+**Geocoding:** [Kartverket / GeoNorge](https://ws.geonorge.no) (NO) +
+[Nominatim](https://nominatim.org) (SE) ·
 **Map:** [Leaflet](https://leafletjs.com) + OpenStreetMap
 
 ## Features
 
 - 📍 Clustered map of all upcoming running races (next 12 months)
+- 🌍 Country filter: Norway, Sweden or both
 - 🥾 Surface filter: trail (`terrain_running`), road (`asphalt`/`gravel`), or both
 - 📏 Distance filter: preset chips (≤5 km … ultra) or a custom min–max range,
   matched against exact race distances in meters
@@ -33,9 +36,11 @@ Then open http://localhost:8123.
 python fetch_races.py 12   # months ahead, default 12
 ```
 
-The script pulls events from Kondis's public Firestore backend, keeps
-`sportType == running` in Norway, geocodes each unique town once via GeoNorge
-(cached in `geocode_cache.json`), and writes `web/races.geojson`.
+The script pulls Norwegian events from Kondis's public Firestore backend
+(`sportType == running`), scrapes Swedish "Löpning"/"Trail" races from
+lopplistan.se's server-rendered list pages, geocodes each unique location once
+(GeoNorge for Norway, Nominatim for Sweden — cached in `geocode_cache.json`),
+and writes a merged `web/races.geojson`.
 
 ## How it works
 
@@ -48,7 +53,9 @@ The script pulls events from Kondis's public Firestore backend, keeps
 
 ## Credits & fair use
 
-Race data belongs to [Kondis](https://www.kondis.no). This is a personal,
-non-commercial project reading the same public API their own site uses —
-be polite (the fetch script throttles and caches). If this ever becomes more
-than a hobby project, ask Kondis first.
+Race data belongs to [Kondis](https://www.kondis.no) and
+[Lopplistan](https://lopplistan.se). This is a personal, non-commercial project
+reading the same public API Kondis's own site uses and crawling Lopplistan
+within its robots.txt (which allows all). The fetch script throttles and
+caches, and Nominatim geocoding respects the 1 req/s usage policy. If this
+ever becomes more than a hobby project, ask both sites first.

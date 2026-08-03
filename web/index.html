@@ -14,7 +14,7 @@
   <aside id="sidebar">
     <header>
       <h1>🏃 Løpskart</h1>
-      <p class="sub">Løp i Norge de neste 12 månedene · data fra Kondis terminlista</p>
+      <p class="sub">Løp i Norge og Sverige de neste 12 månedene · data fra Kondis terminlista og Lopplistan</p>
     </header>
 
     <section class="controls">
@@ -22,8 +22,15 @@
         <button id="locateBtn" class="btn primary">📍 Finn min posisjon</button>
       </div>
       <div class="row">
-        <input id="placeSearch" type="text" placeholder="…eller søk sted (f.eks. Hamar)">
+        <input id="placeSearch" type="text" placeholder="…eller søk sted (f.eks. Hamar, Uppsala)">
         <button id="searchBtn" class="btn">Søk</button>
+      </div>
+
+      <label class="label">Land</label>
+      <div class="seg" id="countrySeg">
+        <button data-val="all" class="active">Alle</button>
+        <button data-val="NO">🇳🇴 Norge</button>
+        <button data-val="SE">🇸🇪 Sverige</button>
       </div>
 
       <label class="label">Underlag</label>

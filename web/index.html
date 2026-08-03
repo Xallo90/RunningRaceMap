@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="nb">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Løpskart – finn løp nær deg</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+  <aside id="sidebar">
+    <header>
+      <h1>🏃 Løpskart</h1>
+      <p class="sub">Løp i Norge de neste 12 månedene · data fra Kondis terminlista</p>
+    </header>
+
+    <section class="controls">
+      <div class="row">
+        <button id="locateBtn" class="btn primary">📍 Finn min posisjon</button>
+      </div>
+      <div class="row">
+        <input id="placeSearch" type="text" placeholder="…eller søk sted (f.eks. Hamar)">
+        <button id="searchBtn" class="btn">Søk</button>
+      </div>
+
+      <label class="label">Underlag</label>
+      <div class="seg" id="surfaceSeg">
+        <button data-val="all" class="active">Alle</button>
+        <button data-val="trail">Terreng</button>
+        <button data-val="road">Vei</button>
+      </div>
+
+      <label class="label">Distanse</label>
+      <div class="chips" id="distChips">
+        <button data-min="0" data-max="999" class="active">Alle</button>
+        <button data-min="0" data-max="5.5">≤5 km</button>
+        <button data-min="5.5" data-max="15">5–15</button>
+        <button data-min="15" data-max="30">15–30</button>
+        <button data-min="40" data-max="45">Maraton</button>
+        <button data-min="45" data-max="999">Ultra</button>
+      </div>
+      <div class="row minmax">
+        <input id="distMin" type="number" min="0" step="1" placeholder="fra km">
+        <span>–</span>
+        <input id="distMax" type="number" min="0" step="1" placeholder="til km">
+      </div>
+
+      <label class="label">Dato</label>
+      <div class="row minmax">
+        <input id="dateFrom" type="date">
+        <span>–</span>
+        <input id="dateTo" type="date">
+      </div>
+    </section>
+
+    <div id="count" class="count"></div>
+    <div id="raceList" class="race-list"></div>
+
+    <footer>
+      <span class="dot trail"></span>Terreng
+      <span class="dot road"></span>Vei
+      <span class="dot both"></span>Begge
+      <span class="dot unknown"></span>Ukjent
+    </footer>
+  </aside>
+  <div id="map"></div>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

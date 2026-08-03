@@ -1,0 +1,722 @@
+{
+ "Voss|Vestland": [
+  60.62774,
+  6.41848
+ ],
+ "Bergen|Vestland": [
+  60.392,
+  5.32802
+ ],
+ "Alta|Finnmark": [
+  69.96887,
+  23.27163
+ ],
+ "Fredrikstad|Østfold": [
+  59.21759,
+  10.93787
+ ],
+ "Sunnfjord|Vestland": [
+  61.45027,
+  5.85742
+ ],
+ "Vadsø|Finnmark": [
+  70.08031,
+  29.73094
+ ],
+ "Steinkjer|Trøndelag": [
+  64.01484,
+  11.49538
+ ],
+ "Sarpsborg|Østfold": [
+  59.28388,
+  11.1097
+ ],
+ "Moss|Østfold": [
+  59.43402,
+  10.6577
+ ],
+ "Osterøy|Vestland": [
+  60.52389,
+  5.50554
+ ],
+ "Hamar|Innlandet": [
+  60.79451,
+  11.06795
+ ],
+ "Tromsø|Troms": [
+  69.65455,
+  18.96366
+ ],
+ "Grue|Innlandet": [
+  62.51679,
+  11.02006
+ ],
+ "Holmestrand|Vestfold": [
+  59.48761,
+  10.31758
+ ],
+ "Alvdal|Innlandet": [
+  62.10768,
+  10.63071
+ ],
+ "Bodø|Nordland": [
+  67.28267,
+  14.37513
+ ],
+ "Sunndal|Møre og Romsdal": [
+  62.67463,
+  8.56189
+ ],
+ "Aurskog-Høland|Akershus": [
+  59.88319,
+  11.56491
+ ],
+ "Kvam|Vestland": [
+  60.36978,
+  6.14345
+ ],
+ "Trysil|Innlandet": [
+  61.31548,
+  12.26422
+ ],
+ "Bærum|Akershus": [
+  59.89011,
+  10.52674
+ ],
+ "Horten|Vestfold": [
+  59.41721,
+  10.48344
+ ],
+ "Vefsn|Nordland": [
+  65.84109,
+  13.20025
+ ],
+ "Flå|Buskerud": [
+  60.43023,
+  9.46199
+ ],
+ "Surnadal|Møre og Romsdal": [
+  62.97389,
+  8.72634
+ ],
+ "Oslo|Oslo": [
+  59.91273,
+  10.74609
+ ],
+ "Grimstad|Agder": [
+  58.34046,
+  8.59337
+ ],
+ "Lier|Buskerud": [
+  59.78663,
+  10.24591
+ ],
+ "Stavanger|Rogaland": [
+  58.96899,
+  5.72886
+ ],
+ "Nordre Follo|Akershus": [
+  59.72054,
+  10.8388
+ ],
+ "Inderøy|Trøndelag": [
+  63.8761,
+  11.28863
+ ],
+ "Lørenskog|Akershus": [
+  59.93208,
+  10.96079
+ ],
+ "Kongsberg|Buskerud": [
+  59.66347,
+  9.64741
+ ],
+ "Trondheim|Trøndelag": [
+  63.43048,
+  10.39506
+ ],
+ "Lillestrøm|Akershus": [
+  59.95597,
+  11.04918
+ ],
+ "Arendal|Agder": [
+  58.46044,
+  8.76503
+ ],
+ "Ringsaker|Innlandet": [
+  60.88216,
+  10.9503
+ ],
+ "Kongsvinger|Innlandet": [
+  60.19048,
+  11.99772
+ ],
+ "Ålesund|Møre og Romsdal": [
+  62.47226,
+  6.1549
+ ],
+ "Stjørdal|Trøndelag": [
+  63.46694,
+  10.91256
+ ],
+ "Orkland|Trøndelag": [
+  63.29962,
+  9.84313
+ ],
+ "Stranda|Møre og Romsdal": [
+  62.30767,
+  6.94748
+ ],
+ "Gloppen|Vestland": [
+  61.77729,
+  6.21569
+ ],
+ "Frogn|Akershus": [
+  59.66664,
+  10.63566
+ ],
+ "Luster|Vestland": [
+  61.40312,
+  7.29793
+ ],
+ "Nannestad|Akershus": [
+  60.21707,
+  11.012
+ ],
+ "Gol|Buskerud": [
+  60.70142,
+  8.94551
+ ],
+ "Drammen|Buskerud": [
+  59.74389,
+  10.20448
+ ],
+ "Randaberg|Rogaland": [
+  58.99876,
+  5.62059
+ ],
+ "Sula|Møre og Romsdal": [
+  62.41528,
+  6.13374
+ ],
+ "Flekkefjord|Agder": [
+  58.2979,
+  6.66346
+ ],
+ "Sandnes|Rogaland": [
+  58.85332,
+  5.74158
+ ],
+ "Kristiansand|Agder": [
+  58.14615,
+  7.99573
+ ],
+ "Ringerike|Buskerud": [
+  60.16016,
+  10.25665
+ ],
+ "Asker|Akershus": [
+  59.83433,
+  10.43391
+ ],
+ "Molde|Møre og Romsdal": [
+  62.73752,
+  7.15913
+ ],
+ "Tana|Finnmark": [
+  70.19977,
+  28.18469
+ ],
+ "Senja|Troms og Finnmark": [
+  69.23108,
+  17.98728
+ ],
+ "Sandefjord|Vestfold": [
+  59.13133,
+  10.22234
+ ],
+ "Rennebu|Trøndelag": [
+  62.82864,
+  10.00486
+ ],
+ "Etne|Vestland": [
+  59.66472,
+  5.9344
+ ],
+ "Notodden|Telemark": [
+  59.55935,
+  9.25853
+ ],
+ "Ørsta|Møre og Romsdal": [
+  62.19983,
+  6.12904
+ ],
+ "Narvik|Nordland": [
+  68.43828,
+  17.42777
+ ],
+ "Hol|Buskerud": [
+  60.61511,
+  8.29399
+ ],
+ "Valle|Agder": [
+  59.2126,
+  7.5356
+ ],
+ "Sør-Odal|Innlandet": [
+  60.25346,
+  11.683
+ ],
+ "Lyngen|Troms": [
+  69.77968,
+  20.38268
+ ],
+ "Namsos|Trøndelag": [
+  64.46558,
+  11.49784
+ ],
+ "Eidsvoll|Akershus": [
+  60.33045,
+  11.26161
+ ],
+ "Harstad|Troms": [
+  68.80112,
+  16.54414
+ ],
+ "Hadsel|Nordland": [
+  68.56328,
+  14.90835
+ ],
+ "Elverum|Innlandet": [
+  60.88191,
+  11.56231
+ ],
+ "Kvinesdal|Agder": [
+  58.31603,
+  6.96312
+ ],
+ "Skien|Telemark": [
+  59.20749,
+  9.61057
+ ],
+ "Midt-Telemark|Telemark": [
+  59.41285,
+  9.06593
+ ],
+ "Gjøvik|Innlandet": [
+  60.79574,
+  10.69155
+ ],
+ "Tønsberg|Vestfold": [
+  59.26753,
+  10.40763
+ ],
+ "Lillehammer|Innlandet": [
+  61.11514,
+  10.46628
+ ],
+ "Rana|Nordland": [
+  66.31121,
+  14.13996
+ ],
+ "Verdal|Trøndelag": [
+  63.79135,
+  11.47682
+ ],
+ "Indre Østfold|Østfold": [
+  59.58466,
+  11.16084
+ ],
+ "Nord-Fron|Innlandet": [
+  61.59558,
+  9.74827
+ ],
+ "Bjørnafjorden|Vestland": [
+  60.1855,
+  5.46974
+ ],
+ "Løten|Innlandet": [
+  60.81941,
+  11.34209
+ ],
+ "Suldal|Rogaland": [
+  59.48573,
+  6.25224
+ ],
+ "Balsfjord|Troms": [
+  69.24023,
+  19.22654
+ ],
+ "Kvinnherad|Vestland": [
+  59.98421,
+  6.01228
+ ],
+ "Fitjar|Vestland": [
+  59.91803,
+  5.31674
+ ],
+ "Sigdal|Buskerud": [
+  60.04591,
+  9.63673
+ ],
+ "Lindesnes|Agder": [
+  58.02635,
+  7.45015
+ ],
+ "Hareid|Møre og Romsdal": [
+  62.37041,
+  6.02902
+ ],
+ "Lierne|Trøndelag": [
+  64.46412,
+  13.59248
+ ],
+ "Volda|Møre og Romsdal": [
+  62.146,
+  6.07108
+ ],
+ "Alstahaug|Nordland": [
+  66.01937,
+  12.60212
+ ],
+ "Øyer|Innlandet": [
+  61.26309,
+  10.41641
+ ],
+ "Øygarden|Vestland": [
+  60.59039,
+  4.83896
+ ],
+ "Kvæfjord|Troms": [
+  68.77201,
+  16.17294
+ ],
+ "Lunner|Akershus": [
+  60.30674,
+  10.58386
+ ],
+ "Gjemnes|Møre og Romsdal": [
+  62.89379,
+  7.67714
+ ],
+ "Sortland|Nordland": [
+  68.6982,
+  15.41382
+ ],
+ "Østre Toten|Innlandet": [
+  60.67658,
+  10.81997
+ ],
+ "Gjerdrum|Akershus": [
+  60.07159,
+  11.03597
+ ],
+ "Nittedal|Akershus": [
+  60.04278,
+  10.88168
+ ],
+ "Stange|Innlandet": [
+  60.71804,
+  11.19414
+ ],
+ "Brønnøy|Nordland": [
+  65.46785,
+  12.20625
+ ],
+ "Ullensaker|Akershus": [
+  60.14403,
+  11.1744
+ ],
+ "Levanger|Trøndelag": [
+  63.74643,
+  11.29964
+ ],
+ "Sogndal|Vestland": [
+  61.22908,
+  7.09674
+ ],
+ "Eidfjord|Vestland": [
+  60.46741,
+  7.06972
+ ],
+ "Ås|Akershus": [
+  59.66366,
+  10.79101
+ ],
+ "Vindafjord|Rogaland": [
+  59.60543,
+  5.80785
+ ],
+ "Oppdal|Trøndelag": [
+  62.59431,
+  9.69121
+ ],
+ "Frøya|Trøndelag": [
+  63.67213,
+  8.33431
+ ],
+ "Vågan|Nordland": [
+  65.26361,
+  12.42041
+ ],
+ "Porsgrunn|Telemark": [
+  59.14172,
+  9.65556
+ ],
+ "Holtålen|Trøndelag": [
+  62.84322,
+  11.29249
+ ],
+ "Hurdal|Akershus": [
+  60.43518,
+  11.06707
+ ],
+ "Iveland|Agder": [
+  58.45726,
+  7.91827
+ ],
+ "Sør-Aurdal|Innlandet": [
+  60.82242,
+  9.54836
+ ],
+ "Hammerfest|Finnmark": [
+  70.66336,
+  23.68206
+ ],
+ "Balsfjord|Troms og Finnmark": [
+  69.24023,
+  19.22654
+ ],
+ "Vestby|Akershus": [
+  59.60511,
+  10.75233
+ ],
+ "Sauda|Rogaland": [
+  59.65068,
+  6.35316
+ ],
+ "Gjesdal|Rogaland": [
+  58.76478,
+  5.855
+ ],
+ "Rauma|Møre og Romsdal": [
+  62.56811,
+  7.68613
+ ],
+ "Flesberg|Buskerud": [
+  59.86298,
+  9.43246
+ ],
+ "Fauske|Nordland": [
+  67.25945,
+  15.39333
+ ],
+ "Alver|Vestland": [
+  60.54907,
+  5.28565
+ ],
+ "Lillesand|Agder": [
+  58.24945,
+  8.37719
+ ],
+ "Hå|Rogaland": [
+  58.61612,
+  5.64482
+ ],
+ "Klepp|Rogaland": [
+  58.77662,
+  5.63021
+ ],
+ "Vang|Innlandet": [
+  61.12508,
+  8.57076
+ ],
+ "Bardu|Troms": [
+  68.86058,
+  18.35053
+ ],
+ "Harstad|Troms og Finnmark": [
+  68.80112,
+  16.54414
+ ],
+ "Lurøy|Nordland": [
+  66.3929,
+  12.82921
+ ],
+ "Drangedal|Telemark": [
+  59.09756,
+  9.06214
+ ],
+ "Nærøysund|Trøndelag": [
+  64.86355,
+  11.2417
+ ],
+ "Stord|Vestland": [
+  59.78082,
+  5.49966
+ ],
+ "Birkenes|Agder": [
+  58.33488,
+  8.23297
+ ],
+ "Lærdal|Vestland": [
+  61.09842,
+  7.481
+ ],
+ "Hemnes|Nordland": [
+  66.22647,
+  13.6101
+ ],
+ "Stryn|Vestland": [
+  61.9036,
+  6.7187
+ ],
+ "Sømna|Nordland": [
+  65.31379,
+  12.1673
+ ],
+ "Namsskogan|Trøndelag": [
+  64.92883,
+  13.1595
+ ],
+ "Skjervøy|Troms": [
+  70.03577,
+  20.98143
+ ],
+ "Austevoll|Vestland": [
+  60.09486,
+  5.22159
+ ],
+ "Årdal|Vestland": [
+  61.23639,
+  7.70204
+ ],
+ "Vestre Slidre|Innlandet": [
+  61.08842,
+  8.98197
+ ],
+ "Farsund|Agder": [
+  58.09538,
+  6.80404
+ ],
+ "Vestre Toten|Innlandet": [
+  60.72593,
+  10.60763
+ ],
+ "Time|Rogaland": [
+  58.73635,
+  5.65295
+ ],
+ "Malvik|Trøndelag": [
+  63.41056,
+  10.79386
+ ],
+ "Hvaler|Østfold": [
+  59.02808,
+  11.0311
+ ],
+ "Hemsedal|Buskerud": [
+  60.86114,
+  8.56537
+ ],
+ "Melhus|Trøndelag": [
+  63.28704,
+  10.2754
+ ],
+ "Gulen|Vestland": [
+  60.98193,
+  5.07423
+ ],
+ "Tvedestrand|Agder": [
+  58.62616,
+  8.92635
+ ],
+ "Nes|Akershus": [
+  60.56348,
+  9.98776
+ ],
+ "Rindal|Trøndelag": [
+  63.05554,
+  9.21156
+ ],
+ "Sykkylven|Møre og Romsdal": [
+  62.39642,
+  6.58225
+ ],
+ "Nesna|Nordland": [
+  66.19817,
+  13.01844
+ ],
+ "Giske|Møre og Romsdal": [
+  62.50379,
+  6.05019
+ ],
+ "Hustadvika|Møre og Romsdal": [
+  62.8536,
+  7.1535
+ ],
+ "Heim|Trøndelag": [
+  63.42028,
+  9.07999
+ ],
+ "Halden|Østfold": [
+  59.12257,
+  11.38711
+ ],
+ "Haugesund|Rogaland": [
+  59.41013,
+  5.27556
+ ],
+ "Åsnes|Innlandet": [
+  60.58894,
+  11.98712
+ ],
+ "Gausdal|Innlandet": [
+  61.22685,
+  10.22145
+ ],
+ "Nesbyen|Buskerud": [
+  60.56809,
+  9.10276
+ ],
+ "Salangen|Troms": [
+  68.87669,
+  17.83374
+ ],
+ "Modum|Buskerud": [
+  59.97346,
+  10.00468
+ ],
+ "Eigersund|Rogaland": [
+  58.45235,
+  6.00317
+ ],
+ "Nesodden|Akershus": [
+  59.8422,
+  10.6494
+ ],
+ "Hole|Buskerud": [
+  59.73525,
+  9.90549
+ ],
+ "Tysvær|Rogaland": [
+  59.42167,
+  5.44796
+ ],
+ "Rakkestad|Østfold": [
+  59.42181,
+  11.35179
+ ],
+ "Karmøy|Rogaland": [
+  59.28081,
+  5.30539
+ ],
+ "Sola|Rogaland": [
+  58.88806,
+  5.64728
+ ],
+ "Meråker|Trøndelag": [
+  63.41406,
+  11.74298
+ ]
+}

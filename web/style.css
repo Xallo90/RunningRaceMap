@@ -1,0 +1,133 @@
+* { box-sizing: border-box; margin: 0; }
+
+:root {
+  --trail: #2e7d32;
+  --road: #1565c0;
+  --both: #6a1b9a;
+  --unknown: #757575;
+  --bg: #ffffff;
+  --border: #e3e6ea;
+  --text: #1c2430;
+  --muted: #66707c;
+  --accent: #0d47a1;
+}
+
+html, body, #app { height: 100%; }
+
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  color: var(--text);
+}
+
+#app { display: flex; }
+
+#sidebar {
+  width: 360px;
+  min-width: 300px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid var(--border);
+  background: var(--bg);
+}
+
+#map { flex: 1; height: 100%; }
+
+#sidebar header { padding: 14px 16px 8px; }
+#sidebar h1 { font-size: 22px; }
+.sub { font-size: 12px; color: var(--muted); margin-top: 2px; }
+
+.controls { padding: 8px 16px 12px; border-bottom: 1px solid var(--border); }
+
+.row { display: flex; gap: 6px; margin-bottom: 8px; align-items: center; }
+.row input[type="text"] {
+  flex: 1; padding: 8px 10px; border: 1px solid var(--border);
+  border-radius: 8px; font-size: 13px;
+}
+
+.btn {
+  padding: 8px 12px; border: 1px solid var(--border); background: #f6f8fa;
+  border-radius: 8px; cursor: pointer; font-size: 13px;
+}
+.btn:hover { background: #eef1f4; }
+.btn.primary {
+  width: 100%; background: var(--accent); color: #fff; border-color: var(--accent);
+  font-weight: 600;
+}
+.btn.primary:hover { background: #0b3d8c; }
+
+.label {
+  display: block; font-size: 11px; text-transform: uppercase;
+  letter-spacing: .05em; color: var(--muted); margin: 10px 0 4px;
+}
+
+.seg { display: flex; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+.seg button {
+  flex: 1; padding: 7px 0; border: none; background: #fff; cursor: pointer;
+  font-size: 13px; border-right: 1px solid var(--border);
+}
+.seg button:last-child { border-right: none; }
+.seg button.active { background: var(--accent); color: #fff; font-weight: 600; }
+
+.chips { display: flex; flex-wrap: wrap; gap: 5px; }
+.chips button {
+  padding: 5px 10px; border: 1px solid var(--border); border-radius: 999px;
+  background: #fff; cursor: pointer; font-size: 12px;
+}
+.chips button.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+.minmax input[type="number"], .minmax input[type="date"] {
+  flex: 1; padding: 6px 8px; border: 1px solid var(--border);
+  border-radius: 8px; font-size: 13px; min-width: 0;
+}
+.minmax span { color: var(--muted); }
+.minmax { margin-top: 6px; }
+
+.count { padding: 8px 16px; font-size: 12px; color: var(--muted); }
+
+.race-list { flex: 1; overflow-y: auto; }
+
+.race-item {
+  padding: 10px 16px; border-bottom: 1px solid var(--border); cursor: pointer;
+}
+.race-item:hover { background: #f4f7fb; }
+.race-item .name { font-weight: 600; font-size: 14px; display: flex; gap: 6px; align-items: baseline; }
+.race-item .meta { font-size: 12px; color: var(--muted); margin-top: 2px; }
+.race-item .away { color: var(--accent); font-weight: 600; font-size: 12px; margin-left: auto; white-space: nowrap; }
+
+.badge {
+  display: inline-block; width: 8px; height: 8px; border-radius: 50%;
+  flex: none; align-self: center;
+}
+
+#sidebar footer {
+  padding: 8px 16px; border-top: 1px solid var(--border);
+  font-size: 11px; color: var(--muted);
+  display: flex; align-items: center; gap: 4px;
+}
+.dot { width: 9px; height: 9px; border-radius: 50%; display: inline-block; margin-left: 8px; }
+.dot:first-child { margin-left: 0; }
+.dot.trail { background: var(--trail); }
+.dot.road { background: var(--road); }
+.dot.both { background: var(--both); }
+.dot.unknown { background: var(--unknown); }
+
+.leaflet-popup-content { font-size: 13px; line-height: 1.45; }
+.leaflet-popup-content h3 { font-size: 15px; margin-bottom: 4px; }
+.leaflet-popup-content .tags { margin: 4px 0; }
+.leaflet-popup-content .tag {
+  display: inline-block; padding: 1px 8px; border-radius: 999px;
+  font-size: 11px; color: #fff; margin-right: 4px;
+}
+
+.user-dot {
+  width: 16px; height: 16px; border-radius: 50%;
+  background: #1a73e8; border: 3px solid #fff;
+  box-shadow: 0 0 0 2px #1a73e8, 0 1px 6px rgba(0,0,0,.4);
+}
+
+@media (max-width: 720px) {
+  #app { flex-direction: column; }
+  #sidebar { width: 100%; height: 55%; order: 2; }
+  #map { height: 45%; }
+}

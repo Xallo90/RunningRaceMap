@@ -42,6 +42,12 @@ function fmtDate(iso) {
   });
 }
 
+function dateLabel(p) {
+  if (!p.estimated) return fmtDate(p.date);
+  const my = new Date(p.date).toLocaleDateString("nb-NO", { month: "long", year: "numeric" });
+  return `~${my} · dato ikke bekreftet`;
+}
+
 function fmtKm(kms) {
   if (!kms || !kms.length) return null;
   return kms.map(k => (k % 1 ? k.toFixed(1).replace(".", ",") : k) + " km").join(", ");
@@ -66,7 +72,7 @@ function popupHtml(p) {
   const col = colorFor(p.categories);
   return `
     <h3>${p.name}</h3>
-    <div>📅 ${fmtDate(p.date)}</div>
+    <div>📅 ${dateLabel(p)}</div>
     <div>📍 ${p.country === "SE" ? "🇸🇪" : "🇳🇴"} ${p.town}${p.area ? ", " + p.area : ""}</div>
     ${p.distanceSummary ? `<div>📏 ${p.distanceSummary}</div>` : ""}
     <div class="tags"><span class="tag" style="background:${col}">${surfaceLabel(p.categories)}</span></div>
@@ -122,7 +128,7 @@ function applyFilters() {
         <span>${p.name}</span>
         ${r.away != null ? `<span class="away">${r.away < 10 ? r.away.toFixed(1) : Math.round(r.away)} km</span>` : ""}
       </div>
-      <div class="meta">${p.country === "SE" ? "🇸🇪" : "🇳🇴"} ${fmtDate(p.date)} · ${p.town}${p.distanceSummary ? " · " + p.distanceSummary : ""}</div>
+      <div class="meta">${p.country === "SE" ? "🇸🇪" : "🇳🇴"} ${dateLabel(p)} · ${p.town}${p.distanceSummary ? " · " + p.distanceSummary : ""}</div>
     `;
     el.addEventListener("click", () => {
       cluster.zoomToShowLayer(r.marker, () => r.marker.openPopup());

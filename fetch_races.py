@@ -260,67 +260,102 @@ def se_parse_distances(text):
     return sorted(out)
 
 
+SE_MONTH_SLUGS = ["januari", "februari", "mars", "april", "maj", "juni",
+                  "juli", "augusti", "september", "oktober", "november",
+                  "december"]
+
+
+def se_parse_page(html, races, seen, start_date, end_date,
+                  est_year=None, est_month=None):
+    """Parse one lopplistan list page's race blocks into `races`.
+
+    Undated blocks ("Åter 2027" – recurring race, next date not confirmed)
+    get an estimated mid-month date from the month page they appear on,
+    marked with estimated=True.
+    """
+    blocks = html.split('<div class="race ')[1:]
+    found = 0
+    for block in blocks:
+        block = block[:3000]
+        m_date = re.search(r'<time datetime="(\d{4}-\d{2}-\d{2})"', block)
+        m_name = re.search(
+            r'<a class="race__link" href="?([^ >"]+)"?[^>]*>\s*(.*?)\s*</a>',
+            block, re.S)
+        m_act = re.search(r'race__activity" title="?([^>"]+?)"?\s*>', block)
+        m_dist = re.search(r'<div class="race__distance">\s*(.*?)\s*</div>',
+                           block, re.S)
+        m_loc = re.search(r'<div class="race__location">\s*(.*?)\s*</div>',
+                          block, re.S)
+        if not (m_name and m_act):
+            continue
+        activity = m_act.group(1).strip()
+        if activity not in ("Löpning", "Trail"):
+            continue
+        estimated = False
+        if m_date:
+            date = m_date.group(1)
+        elif est_month:
+            m_ater = re.search(r"Åter\s+(\d{4})", block)
+            year = int(m_ater.group(1)) if m_ater else est_year
+            date = f"{year}-{est_month:02d}-15"
+            estimated = True
+        else:
+            continue
+        if not (start_date <= date <= end_date):
+            continue
+        name = htmllib.unescape(re.sub(r"\s+", " ", m_name.group(2))).strip()
+        key = (name.lower(), date)
+        if key in seen:
+            continue
+        seen.add(key)
+        href = m_name.group(1).strip()
+        url = "https://lopplistan.se" + href if href.startswith("/") else href
+        dist_text = htmllib.unescape(m_dist.group(1)).strip() if m_dist else ""
+        town = htmllib.unescape(m_loc.group(1)).strip() if m_loc else None
+        if not town:
+            continue
+        races.append({
+            "id": "se" + hashlib.md5(f"{name}|{date}".encode()).hexdigest()[:12],
+            "country": "SE",
+            "name": name,
+            "date": date + "T00:00:00Z",
+            "town": town,
+            "area": None,
+            "distanceSummary": dist_text or None,
+            "distances_km": se_parse_distances(dist_text),
+            "categories": ["trail"] if activity == "Trail" else ["road"],
+            "url": url,
+            "description": "",
+            "estimated": estimated,
+        })
+        found += 1
+    return found
+
+
 def fetch_sweden(start, months):
-    """Scrape lopplistan.se list pages. Returns normalized race dicts."""
+    """Scrape lopplistan.se month-filtered list pages (the complete listing —
+    the front page only shows a subset). Returns normalized race dicts."""
     end_date = (start + timedelta(days=months * 31)).strftime("%Y-%m-%d")
     start_date = start.strftime("%Y-%m-%d")
     races, seen = [], set()
-    page, max_page = 1, 1
-    while page <= max_page:
-        html = http_get(f"{LOPPLISTAN_URL}?page={page}")
-        if page == 1:
-            nums = [int(n) for n in re.findall(r"\?page=(\d+)", html)]
-            max_page = max(nums) if nums else 1
-            print(f"  SE lopplistan.se: {max_page} pages")
-        blocks = html.split('<div class="race ')[1:]
-        found = 0
-        for block in blocks:
-            block = block[:3000]
-            m_date = re.search(r'<time datetime="(\d{4}-\d{2}-\d{2})"', block)
-            m_name = re.search(
-                r'<a class="race__link" href="?([^ >"]+)"?[^>]*>\s*(.*?)\s*</a>',
-                block, re.S)
-            m_act = re.search(r'race__activity" title="?([^>"]+?)"?\s*>', block)
-            m_dist = re.search(r'<div class="race__distance">\s*(.*?)\s*</div>',
-                               block, re.S)
-            m_loc = re.search(r'<div class="race__location">\s*(.*?)\s*</div>',
-                              block, re.S)
-            if not (m_date and m_name and m_act):
-                continue
-            activity = m_act.group(1).strip()
-            if activity not in ("Löpning", "Trail"):
-                continue
-            date = m_date.group(1)
-            if not (start_date <= date <= end_date):
-                continue
-            name = htmllib.unescape(re.sub(r"\s+", " ", m_name.group(2))).strip()
-            key = (name.lower(), date)
-            if key in seen:
-                continue
-            seen.add(key)
-            href = m_name.group(1).strip()
-            url = "https://lopplistan.se" + href if href.startswith("/") else href
-            dist_text = htmllib.unescape(m_dist.group(1)).strip() if m_dist else ""
-            town = htmllib.unescape(m_loc.group(1)).strip() if m_loc else None
-            if not town:
-                continue
-            races.append({
-                "id": "se" + hashlib.md5(f"{name}|{date}".encode()).hexdigest()[:12],
-                "country": "SE",
-                "name": name,
-                "date": date + "T00:00:00Z",
-                "town": town,
-                "area": None,
-                "distanceSummary": dist_text or None,
-                "distances_km": se_parse_distances(dist_text),
-                "categories": ["trail"] if activity == "Trail" else ["road"],
-                "url": url,
-                "description": "",
-            })
-            found += 1
-        print(f"  SE page {page}: {found} running/trail races")
-        page += 1
-        time.sleep(0.6)  # be polite
+    for i in range(months):
+        m_idx = start.month - 1 + i
+        est_month = m_idx % 12 + 1
+        est_year = start.year + m_idx // 12
+        slug = SE_MONTH_SLUGS[est_month - 1]
+        base = f"{LOPPLISTAN_URL}sverige/alla/alla-distanser/{slug}/"
+        page, max_page = 1, 1
+        month_found = 0
+        while page <= max_page:
+            html = http_get(f"{base}?page={page}" if page > 1 else base)
+            if page == 1:
+                nums = [int(n) for n in re.findall(r"\?page=(\d+)", html)]
+                max_page = max(nums) if nums else 1
+            month_found += se_parse_page(html, races, seen, start_date, end_date,
+                                         est_year=est_year, est_month=est_month)
+            page += 1
+            time.sleep(0.6)  # be polite
+        print(f"  SE {slug}: {month_found} running/trail races ({max_page} pages)")
     return races
 
 
